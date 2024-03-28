@@ -23,6 +23,7 @@ import {
 } from "antd";
 import "./Header.css";
 import Search from "antd/es/input/Search";
+
 const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -41,26 +42,28 @@ function getItem(
   } as MenuItem;
 }
 
-const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-];
-
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const itemsSideBar: MenuItem[] = [
+    // getItem("Option 1", "1", <PieChartOutlined />),
+    // getItem("Option 2", "2", <DesktopOutlined />),
+    getItem("User", "sub1", <UserOutlined />, [
+      getItem("Tom", "3"),
+      getItem("Bill", "4"),
+      getItem("Alex", "5"),
+    ]),
+    getItem("Team", "sub2", <TeamOutlined />, [
+      getItem("Team 1", "6"),
+      getItem("Team 2", "8"),
+    ]),
+    getItem("Files", "9", <FileOutlined />),
+  ];
+
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -70,41 +73,14 @@ const App: React.FC = () => {
           rel="noopener noreferrer"
           href="https://www.antgroup.com"
         >
-          1st menu item
+          Cài đặt tài khoản
         </a>
       ),
     },
     {
       key: "2",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item (disabled)
-        </a>
-      ),
-      icon: <SmileOutlined />,
-      disabled: true,
-    },
-    {
-      key: "3",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.luohanacademy.com"
-        >
-          3rd menu item (disabled)
-        </a>
-      ),
-      disabled: true,
-    },
-    {
-      key: "4",
       danger: true,
-      label: "a danger item",
+      label: "Đăng xuất",
     },
   ];
   return (
@@ -119,7 +95,7 @@ const App: React.FC = () => {
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
-          items={items}
+          items={itemsSideBar}
         />
       </Sider>
       <Layout>
@@ -129,7 +105,7 @@ const App: React.FC = () => {
             background: colorBgContainer,
           }}
         >
-          <div className="header">
+          <div className="header ">
             <div // icon header
               className="icon-header"
             >
@@ -138,7 +114,7 @@ const App: React.FC = () => {
                 alt=""
               />
             </div>
-            <div className="about-us-header">
+            <div className="about-us-header col-2">
               <Button type="text">Về chúng tôi</Button>
             </div>
             <div //div search form
@@ -155,20 +131,20 @@ const App: React.FC = () => {
               <Button type="text">Đọc sách miễn phí</Button>
               <Button type="text">Mua sách</Button>
             </div>
-            <div className="icon-header" style={{ marginLeft: "2%" }}>
-              <div>
+            <div className="avatar-header">
+              <div style={{ display: "flex" }}>
                 <ShoppingCartOutlined style={{ fontSize: 25 }} />
               </div>
-            </div>
-            <div>
-              <Dropdown menu={{ items }}>
-                <a onClick={(e) => e.preventDefault()}>
-                  <Space>
-                    <Avatar size="large" icon={<UserOutlined />} />
-                    <DownOutlined />
-                  </Space>
-                </a>
-              </Dropdown>
+              <div style={{ marginLeft: "20px" }}>
+                <Dropdown menu={{ items }}>
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                      <Avatar icon={<UserOutlined />} />
+                      <DownOutlined />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </div>
             </div>
           </div>
         </Header>
