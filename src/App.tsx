@@ -44,6 +44,7 @@ const App: React.FC = () => {
 
   return (
     <Layout>
+      <HeaderCustom />
       <Layout>
         <Sider width={200} style={{ background: colorBgContainer }}>
           <Menu
@@ -54,22 +55,20 @@ const App: React.FC = () => {
             items={items2}
           />
         </Sider>
-        <div style={{ width: "100%" }}>
-          <HeaderCustom />
-          <Layout style={{ padding: "24px 24px 24px" }}>
-            <Content
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 280,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              Content
-            </Content>
-          </Layout>
-        </div>
+
+        <Layout style={{ padding: "24px 24px 24px" }}>
+          <Content
+            style={{
+              padding: 24,
+              margin: 0,
+              minHeight: 280,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            Content
+          </Content>
+        </Layout>
       </Layout>
     </Layout>
   );
