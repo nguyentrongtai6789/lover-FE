@@ -1,8 +1,6 @@
 import {
   DownOutlined,
-  LogoutOutlined,
   ShoppingCartOutlined,
-  SmileOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import {
@@ -17,6 +15,8 @@ import {
   Space,
 } from "antd";
 import React from "react";
+import "./Header.css";
+import { ButtonCustom } from "../../customComponents/ButtonCustom";
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -43,71 +43,42 @@ const items: MenuProps["items"] = [
 
 const HeaderCustom: React.FC = () => {
   return (
-    <Header
-      style={{
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: "white",
-        padding: "0",
-      }}
-    >
-      <div
-        className="logo-header"
-        style={{
-          height: "100%",
-          width: "8%",
-        }}
-      >
+    <Header className="header">
+      <div className="logo-header">
         <img
           src="https://librireading.com/wp-content/uploads/2021/07/welcome_logo-e1625356970296.jpg"
           alt=""
-          style={{ width: "100%", height: "100%" }}
         />
       </div>
 
-      <div className="menu-header" style={{ marginLeft: "1%", width: "50%" }}>
-        <Flex gap="small" wrap="wrap">
-          <Button type="link">Trang chủ</Button>
-          <Button type="link">Đọc sách miễn phí</Button>
+      <div className="menu-header">
+        <Flex
+          gap="small"
+          wrap="wrap"
+          style={{ justifyContent: "space-between" }}
+        >
+          <ButtonCustom title="Trang chủ" />
+          <ButtonCustom title="Trang chủ" />
           <Button type="link">Mua sách</Button>
           <Button type="link">Câu chuyện</Button>
         </Flex>
       </div>
-      <div
-        className="search-header"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-          width: "20%",
-          marginLeft: "1%",
-        }}
-      >
+      <div className="search-header">
         <Search
           placeholder="input search text"
           onSearch={() => {}}
           enterButton
         />
       </div>
-      <div
-        className="card-header"
-        style={{
-          position: "absolute",
-          right: "6%",
-        }}
-      >
-        <Badge count={5}>
-          <ShoppingCartOutlined size={50} style={{ fontSize: 25 }} />
+      <div className="card-header">
+        <Badge count={5} style={{ marginTop: "30px" }}>
+          <ShoppingCartOutlined
+            size={50}
+            style={{ fontSize: 25, marginTop: "30px" }}
+          />
         </Badge>
       </div>
-      <div
-        className="avatar-header"
-        style={{
-          position: "absolute",
-          right: "1%",
-        }}
-      >
+      <div className="avatar-header">
         <Dropdown menu={{ items }}>
           <a onClick={(e) => e.preventDefault()}>
             <Space>

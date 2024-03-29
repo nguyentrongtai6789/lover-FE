@@ -1,12 +1,13 @@
-import React from "react";
 import {
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
-import HeaderCustom from "./Header";
+import { Layout, Menu, theme } from "antd";
+import React from "react";
+import HeaderCustom from "./components/views/Header/Header";
+import "../src/components/styles/button.scss";
 
 const { Header, Content, Sider } = Layout;
 
@@ -43,7 +44,7 @@ const App: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout>
+    <Layout style={{ padding: 0, marginTop: 0, backgroundColor: "red" }}>
       <HeaderCustom />
       <Layout>
         <Sider width={200} style={{ background: colorBgContainer }}>
