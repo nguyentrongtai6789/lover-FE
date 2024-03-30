@@ -38,6 +38,7 @@ interface CustomButtonProps extends ButtonProps {
   tooltip?: string;
   title?: string;
   icon?: keyof typeof icons;
+  className?: string;
 }
 
 export const ButtonCustom = ({
@@ -46,10 +47,12 @@ export const ButtonCustom = ({
   icon,
   name,
   style,
+  className,
   ...rest
 }: CustomButtonProps) => {
   return (
     <Button
+      className={className}
       name={name}
       icon={icon ? icons[icon] : void 0}
       {...rest}

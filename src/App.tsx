@@ -8,6 +8,7 @@ import { Layout, Menu, theme } from "antd";
 import React from "react";
 import HeaderCustom from "./components/views/Header/Header";
 import "../src/components/styles/button.scss";
+import "../src/components/styles/header.scss";
 
 const { Header, Content, Sider } = Layout;
 

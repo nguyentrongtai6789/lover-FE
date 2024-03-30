@@ -15,8 +15,6 @@ import {
   Space,
 } from "antd";
 import React from "react";
-import "./Header.css";
-import { ButtonCustom } from "../../customComponents/ButtonCustom";
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -57,10 +55,10 @@ const HeaderCustom: React.FC = () => {
           wrap="wrap"
           style={{ justifyContent: "space-between" }}
         >
-          <ButtonCustom title="Trang chủ" />
-          <ButtonCustom title="Trang chủ" />
-          <Button type="link">Mua sách</Button>
-          <Button type="link">Câu chuyện</Button>
+          <div className="div-header">TRANG CHỦ</div>
+          <div className="div-header">VỀ CHÚNG TÔI</div>
+          <div className="div-header">MUA SÁCH</div>
+          <div className="div-header">CÂU CHUYỆN</div>
         </Flex>
       </div>
       <div className="search-header">
