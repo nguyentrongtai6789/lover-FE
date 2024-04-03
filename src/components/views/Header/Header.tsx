@@ -1,20 +1,21 @@
 import {
   DownOutlined,
+  SearchOutlined,
   ShoppingCartOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
   Badge,
-  Button,
   Dropdown,
   Flex,
   Input,
   Layout,
   MenuProps,
   Space,
+  Tooltip,
 } from "antd";
-import React from "react";
+import React, { useState } from "react";
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -40,32 +41,57 @@ const items: MenuProps["items"] = [
 ];
 
 const HeaderCustom: React.FC = () => {
+  const [menuSelected, setMenuSelected] = useState<number>(1);
   return (
     <Header className="header">
       <div className="logo-header">
         <img
-          src="https://librireading.com/wp-content/uploads/2021/07/welcome_logo-e1625356970296.jpg"
+          src="https://oquada.com/upload/category/PDF-eBook-OQUADA.jpg"
           alt=""
         />
       </div>
 
-      <div className="menu-header">
-        <Flex
-          gap="small"
-          wrap="wrap"
-          style={{ justifyContent: "space-between" }}
-        >
-          <div className="div-header">TRANG CHỦ</div>
-          <div className="div-header">VỀ CHÚNG TÔI</div>
-          <div className="div-header">MUA SÁCH</div>
-          <div className="div-header">CÂU CHUYỆN</div>
-        </Flex>
-      </div>
-      <div className="search-header">
-        <Search
-          placeholder="input search text"
-          onSearch={() => {}}
-          enterButton
+      <Flex gap="small" wrap="wrap">
+        <div className="menu-header">
+          <div
+            className="div-header"
+            style={menuSelected === 1 ? { backgroundColor: "#111" } : {}}
+            onClick={() => setMenuSelected(1)}
+          >
+            TRANG CHỦ
+          </div>
+          <div
+            className="div-header"
+            style={menuSelected === 2 ? { backgroundColor: "#111" } : {}}
+            onClick={() => setMenuSelected(2)}
+          >
+            VỀ CHÚNG TÔI
+          </div>
+          <div
+            className="div-header"
+            style={menuSelected === 3 ? { backgroundColor: "#111" } : {}}
+            onClick={() => setMenuSelected(3)}
+          >
+            MUA SÁCH
+          </div>
+          <div
+            className="div-header"
+            style={menuSelected === 4 ? { backgroundColor: "#111" } : {}}
+            onClick={() => setMenuSelected(4)}
+          >
+            ĐỌC MIỄN PHÍ
+          </div>
+        </div>
+      </Flex>
+      <div className="search-header-wrapper">
+        <Input
+          className="search-header"
+          placeholder="Tìm kiếm"
+          suffix={
+            <Tooltip title="Nhập để tìm kiếm">
+              <SearchOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+            </Tooltip>
+          }
         />
       </div>
       <div className="card-header">
