@@ -17,7 +17,7 @@ const items2: MenuProps["items"] = listCategories.map(
 
 const SideBarCustom = () => {
   return (
-    <Sider width={200}>
+    <Sider>
       <Menu
         mode="inline"
         defaultSelectedKeys={["1"]}

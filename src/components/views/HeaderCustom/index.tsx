@@ -1,5 +1,6 @@
 import {
   DownOutlined,
+  MenuUnfoldOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
   UserOutlined,
@@ -11,6 +12,7 @@ import {
   Flex,
   Input,
   Layout,
+  Menu,
   MenuProps,
   Space,
   Tooltip,
@@ -18,7 +20,6 @@ import {
 import React, { useState } from "react";
 
 const { Header } = Layout;
-const { Search } = Input;
 
 const items: MenuProps["items"] = [
   {
@@ -40,8 +41,18 @@ const items: MenuProps["items"] = [
   },
 ];
 
+const menu = (
+  <Menu>
+    <Menu.Item key="1">TRANG CHỦ</Menu.Item>
+    <Menu.Item key="2">VỀ CHÚNG TÔI</Menu.Item>
+    <Menu.Item key="3">MUA SÁCH</Menu.Item>
+    <Menu.Item key="3">ĐỌC MIỄN PHÍ</Menu.Item>
+  </Menu>
+);
+
 const HeaderCustom: React.FC = () => {
   const [menuSelected, setMenuSelected] = useState<number>(1);
+
   return (
     <Header className="header">
       <div className="logo-header">
@@ -50,7 +61,6 @@ const HeaderCustom: React.FC = () => {
           alt=""
         />
       </div>
-
       <Flex gap="small" wrap="wrap">
         <div className="menu-header">
           <div
@@ -82,16 +92,17 @@ const HeaderCustom: React.FC = () => {
             ĐỌC MIỄN PHÍ
           </div>
         </div>
+        <Dropdown overlay={menu} className="button-menu">
+          <Space>
+            <Avatar shape="square" size="large" icon={<MenuUnfoldOutlined />} />
+          </Space>
+        </Dropdown>
       </Flex>
       <div className="search-header-wrapper">
         <Input
           className="search-header"
           placeholder="Tìm kiếm"
-          suffix={
-            <Tooltip title="Nhập để tìm kiếm">
-              <SearchOutlined style={{ color: "rgba(0,0,0,.45)" }} />
-            </Tooltip>
-          }
+          suffix={<SearchOutlined style={{ color: "rgba(0,0,0,.45)" }} />}
         />
       </div>
       <div className="card-header">

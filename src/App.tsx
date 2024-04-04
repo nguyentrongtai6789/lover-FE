@@ -3,8 +3,10 @@ import React from "react";
 import "../src/components/styles/button.scss";
 import "../src/components/styles/header.scss";
 import "../src/components/styles/sider.scss";
+import "../src/components/styles/trangChu.scss";
 import HeaderCustom from "./components/views/HeaderCustom";
 import SideBarCustom from "./components/views/SideBarCustom";
+import TrangChu from "./components/views/TrangChu";
 
 const { Header, Content, Sider } = Layout;
 
@@ -20,7 +22,7 @@ const App: React.FC = () => {
       </div>
       <Layout>
         <SideBarCustom />
-        {/* <TrangChu /> */}
+        <TrangChu />
       </Layout>
     </Layout>
   );

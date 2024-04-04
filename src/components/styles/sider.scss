@@ -3,6 +3,9 @@
   border: 1px solid black;
   overflow-y: auto;
   background: none !important;
+  @media (max-width: 800px) {
+    display: none;
+  }
 }
 /* Đối tượng thanh cuộn */
 .ant-layout-sider::-webkit-scrollbar {

@@ -1,0 +1,147 @@
+@import "variables";
+
+.content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 10px;
+  min-height: calc(100vh - 100px);
+
+  @include tablet-and-mobile {
+    padding-top: 110px;
+  }
+
+  @include mobile {
+    padding-top: 120px;
+  }
+
+  >.wapper-tree {
+    >.data-tree {
+      width: 300px;
+      min-height: calc(100vh - 100px);
+      border-right: solid 1px #E6E7E9;
+      position: fixed;
+
+      .tree-title {
+        width: 100%;
+
+        >.icon {
+          position: absolute;
+          top: 12px;
+          right: -8px;
+          color: #2d78d7;
+          font-size: 20px;
+          cursor: pointer;
+          z-index: 999;
+        }
+      }
+    }
+
+    >.data-table {
+      width: 100%;
+      padding-top: 15px;
+      padding-left: 310px;
+      padding-bottom: 10px;
+    }
+
+    &.mini {
+      >.data-tree {
+        width: 0px;
+
+        >.tree-title {
+          >.title {
+            display: none;
+          }
+
+          >.icon {
+            right: -16px
+          }
+        }
+
+        >input-select-tree-api {
+          display: none;
+        }
+      }
+
+      >.data-table {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .hasChild {
+    >td {
+      background-color: #e6e6e6;
+      color: #1a1818;
+    }
+  }
+
+  .isProject {
+    >td {
+      background-color: #f4ba98;
+      color: #1a1818;
+    }
+  }
+
+  .isax-danger {
+    color: rgb(196, 18, 18);
+  }
+
+  .list-note {
+    >div {
+      border-radius: 3px;
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+.list-control-main {
+  display: flex;
+
+  @include tablet-and-mobile {
+    flex-direction: column;
+  }
+}
+
+.w-400 {
+  width: 400px;
+
+  @include tablet-and-mobile {
+    padding-top: 5px;
+  }
+}
+
+.w-300 {
+  width: 300px;
+}
+
+.w-200 {
+  width: 200px;
+}
+
+.change-layout {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  height: 32px !important;
+  background: #2d78d7;
+  color: #fff;
+
+  @include tablet-and-mobile {
+    margin-top: 5px;
+    margin-left: 0px !important;
+  }
+}
+
+.d-flex {
+  @include tablet-and-mobile {
+    display: block !important;
+  }
+}
+
+i {
+  font-size: 16px;
+}

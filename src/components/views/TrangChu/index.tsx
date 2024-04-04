@@ -1,5 +1,7 @@
 import { Layout, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
+import { listCategories } from "../../../fakeData";
+import { ICategory } from "../../../global/interface";
 
 const TrangChu = () => {
   const {
@@ -9,14 +11,19 @@ const TrangChu = () => {
     <Layout style={{ padding: "24px 24px 24px" }}>
       <Content
         style={{
-          padding: 24,
+          padding: 5,
           margin: 0,
           minHeight: 280,
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
         }}
       >
-        Content
+        <div className="menu-category">
+          {listCategories.map((item: ICategory, index) => (
+            <span>{item.name}</span>
+          ))}
+        </div>
+        Content Content Content
       </Content>
     </Layout>
   );
