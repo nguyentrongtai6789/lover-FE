@@ -1,10 +1,25 @@
 .ant-layout-sider {
   max-height: calc(100vh - 64px);
-  border: 1px solid black;
+  // border: 1px solid black;
   overflow-y: auto;
-  background: none !important;
+  background: #333 !important;
   @media (max-width: 800px) {
     display: none;
+  }
+  .ant-menu {
+    background: #333;
+    .ant-menu-title-content {
+      color: #f5f5f5;
+    }
+  }
+  // .ant-menu-item-only-child: {
+  //   background-color: red;
+  // }
+  .ant-menu-item-active:hover {
+    background-color: rgb(17, 17, 17);
+  }
+  .ant-menu-item-selected {
+    background-color: rgb(17, 17, 17);
   }
 }
 /* Đối tượng thanh cuộn */
