@@ -9,6 +9,11 @@ const TrangChu = () => {
   } = theme.useToken();
   return (
     <Layout style={{ padding: "24px 24px 24px" }}>
+      <div className="menu-category">
+        {listCategories.map((item: ICategory, index) => (
+          <span>{item.name}</span>
+        ))}
+      </div>
       <Content
         style={{
           padding: 5,
@@ -18,11 +23,6 @@ const TrangChu = () => {
           borderRadius: borderRadiusLG,
         }}
       >
-        <div className="menu-category">
-          {listCategories.map((item: ICategory, index) => (
-            <span>{item.name}</span>
-          ))}
-        </div>
         Content Content Content
       </Content>
     </Layout>
