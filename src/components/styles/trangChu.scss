@@ -1,5 +1,6 @@
 .menu-category {
   display: none;
+  margin-bottom: 10px;
   @media (max-width: 800px) {
     display: flex;
     flex-wrap: wrap;

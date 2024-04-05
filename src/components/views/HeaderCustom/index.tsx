@@ -8,14 +8,15 @@ import {
 import {
   Avatar,
   Badge,
+  Button,
   Dropdown,
   Flex,
   Input,
   Layout,
   Menu,
   MenuProps,
+  Modal,
   Space,
-  Tooltip,
 } from "antd";
 import React, { useState } from "react";
 
@@ -36,8 +37,8 @@ const items: MenuProps["items"] = [
   },
   {
     key: "4",
-    danger: true,
-    label: `Đăng xuất `,
+    danger: false,
+    label: `Đăng nhập`,
   },
 ];
 
@@ -52,6 +53,20 @@ const menu = (
 
 const HeaderCustom: React.FC = () => {
   const [menuSelected, setMenuSelected] = useState<number>(1);
+  const [openLogin, setOpenLogin] = useState<boolean>(false);
+  const menuAvatar = (
+    <Menu>
+      <Menu.Item key="1">Cài đặt tài khoản</Menu.Item>
+      <Menu.Item
+        key="2"
+        onClick={() => {
+          setOpenLogin(true);
+        }}
+      >
+        Đăng nhập
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <Header className="header">
@@ -114,15 +129,31 @@ const HeaderCustom: React.FC = () => {
         </Badge>
       </div>
       <div className="avatar-header">
-        <Dropdown menu={{ items }}>
-          <a onClick={(e) => e.preventDefault()}>
-            <Space>
-              <Avatar icon={<UserOutlined />} />
-              <DownOutlined />
-            </Space>
-          </a>
+        <Dropdown overlay={menuAvatar}>
+          <Space>
+            <Avatar icon={<UserOutlined />} />
+            <DownOutlined />
+          </Space>
         </Dropdown>
       </div>
+      <Modal
+        width={1400}
+        open={openLogin}
+        onCancel={() => {
+          setOpenLogin(false);
+        }}
+        footer={false}
+        centered
+      >
+        Đăng nhập
+        <Button
+          onClick={() => {
+            setOpenLogin(false);
+          }}
+        >
+          Đóng
+        </Button>
+      </Modal>
     </Header>
   );
 };
