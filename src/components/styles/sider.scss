@@ -20,6 +20,12 @@
   }
   .ant-menu-item-selected {
     background-color: rgb(17, 17, 17);
+    border-radius: unset;
+  }
+  .ant-menu-item {
+    .ant-menu-item-only-child:where {
+      background-color: rgb(226, 28, 41);
+    }
   }
 }
 /* Đối tượng thanh cuộn */

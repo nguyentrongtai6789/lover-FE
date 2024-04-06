@@ -22,26 +22,6 @@ import React, { useState } from "react";
 
 const { Header } = Layout;
 
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        Cài đặt tài khoản
-      </a>
-    ),
-  },
-  {
-    key: "4",
-    danger: false,
-    label: `Đăng nhập`,
-  },
-];
-
 const menu = (
   <Menu>
     <Menu.Item key="1">TRANG CHỦ</Menu.Item>
@@ -145,7 +125,7 @@ const HeaderCustom: React.FC = () => {
         footer={false}
         centered
       >
-        Đăng nhập
+        <div>ĐĂNG NHẬP</div>
         <Button
           onClick={() => {
             setOpenLogin(false);
