@@ -16,9 +16,10 @@ import {
   Menu,
   MenuProps,
   Modal,
-  Space,
 } from "antd";
 import React, { useState } from "react";
+import { Field, Form, Formik, FormikProps } from "formik";
+import { Col, Row, Space, Table } from "antd";
 
 const { Header } = Layout;
 
@@ -124,15 +125,58 @@ const HeaderCustom: React.FC = () => {
         }}
         footer={false}
         centered
+        closeIcon={false}
       >
         <div>ĐĂNG NHẬP</div>
-        <Button
-          onClick={() => {
-            setOpenLogin(false);
-          }}
-        >
-          Đóng
-        </Button>
+        <div>
+          <Button
+            onClick={() => {
+              setOpenLogin(false);
+            }}
+          >
+            Đăng nhập với Facebook
+          </Button>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              setOpenLogin(false);
+            }}
+          >
+            Đăng nhập với Google
+          </Button>
+        </div>
+        <div>Hoặc nhập thông tin tài khoản:</div>
+        <div>
+          <Formik
+            initialValues={{}}
+            onSubmit={(values: any) => {
+              console.log(values);
+            }}
+            // innerRef={formikRef}
+            // validationSchema={validateSubmit}
+          >
+            {(propsFormik: FormikProps<any>) => {
+              return (
+                <Form>
+                  <Field
+                    label={"Ngày cập nhật"}
+                    component={Input}
+                    name="ngayCapNhat"
+                    placeholder={"Tài khoản"}
+                  />
+                  <Field
+                    label={"Nhận xét hàng năm của cơ quan cấp trên"}
+                    component={Input}
+                    name="nhanXet"
+                    className="TNKey"
+                    placeholder={"Mật khẩu"}
+                  />
+                </Form>
+              );
+            }}
+          </Formik>
+        </div>
       </Modal>
     </Header>
   );
