@@ -4,6 +4,8 @@
   //   transition: transform 0.3s cubic-bezier(0.13, 1.07, 0.5, 1.01), visibility 0s;
   //   visibility: visible;
   .ant-modal-content {
+    // border: 1px solid black;
+    padding: 10px 10px;
     border-radius: unset;
     width: 60vh;
     height: 60%;
@@ -17,7 +19,7 @@
     }
 
     .ant-modal-body {
-      border: 1px solid black;
+      // border: 1px solid black;
       width: 100%;
       height: 100%;
       div {
@@ -25,8 +27,38 @@
         justify-content: center;
         margin: 20px;
         font-weight: bold;
+        .ant-input {
+          width: 100%;
+        }
         .ant-btn {
           width: 100%;
+          padding: 0;
+          div {
+            margin: unset;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            // background-color: antiquewhite;
+            font-weight: unset;
+            justify-content: center;
+            align-items: center;
+            .ant-image {
+              max-width: fit-content;
+              margin-right: 5px;
+            }
+            .ant-image-mask {
+              max-width: fit-content;
+            }
+            .ant-image-mask-info {
+              max-width: fit-content;
+            }
+            img {
+              height: 80%;
+              width: calc(
+                100% * var(--aspect-ratio)
+              ); // Sử dụng biến "--aspect-ratio" để tính toán chiều rộng
+            }
+          }
         }
         .ant-input {
           margin-bottom: 5px;

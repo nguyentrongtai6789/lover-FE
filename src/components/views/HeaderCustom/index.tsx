@@ -8,18 +8,18 @@ import {
 import {
   Avatar,
   Badge,
-  Button,
   Dropdown,
   Flex,
   Input,
   Layout,
   Menu,
-  MenuProps,
   Modal,
+  Space,
 } from "antd";
-import React, { useState } from "react";
 import { Field, Form, Formik, FormikProps } from "formik";
-import { Col, Row, Space, Table } from "antd";
+import React, { useState } from "react";
+import { IconFacebook, IconGoogle } from "../../../global/linkImage";
+import { ButtonCustom } from "../../customComponents/ButtonCustom";
 
 const { Header } = Layout;
 
@@ -117,37 +117,28 @@ const HeaderCustom: React.FC = () => {
           </Space>
         </Dropdown>
       </div>
-      <Modal
-        width={1400}
-        open={openLogin}
-        onCancel={() => {
-          setOpenLogin(false);
-        }}
-        footer={false}
-        centered
-        closeIcon={false}
-      >
-        <div>ĐĂNG NHẬP</div>
-        <div>
-          <Button
-            onClick={() => {
-              setOpenLogin(false);
-            }}
-          >
-            Đăng nhập với Facebook
-          </Button>
-        </div>
-        <div>
-          <Button
-            onClick={() => {
-              setOpenLogin(false);
-            }}
-          >
-            Đăng nhập với Google
-          </Button>
-        </div>
-        <div>Hoặc nhập thông tin tài khoản:</div>
-        <div>
+      {openLogin && (
+        <Modal
+          width={1400}
+          open={openLogin}
+          onCancel={() => {
+            setOpenLogin(false);
+          }}
+          footer={false}
+          centered
+          closeIcon={false}
+        >
+          <div>Đăng nhập</div>
+          <div>
+            <ButtonCustom
+              title="Đăng nhập với Facebook"
+              urlImage={IconFacebook}
+            />
+          </div>
+          <div>
+            <ButtonCustom title="Đăng nhập với Google" urlImage={IconGoogle} />
+          </div>
+          <div>Hoặc nhập thông tin tài khoản:</div>
           <Formik
             initialValues={{}}
             onSubmit={(values: any) => {
@@ -159,25 +150,32 @@ const HeaderCustom: React.FC = () => {
             {(propsFormik: FormikProps<any>) => {
               return (
                 <Form>
-                  <Field
-                    label={"Ngày cập nhật"}
-                    component={Input}
-                    name="ngayCapNhat"
-                    placeholder={"Tài khoản"}
-                  />
-                  <Field
-                    label={"Nhận xét hàng năm của cơ quan cấp trên"}
-                    component={Input}
-                    name="nhanXet"
-                    className="TNKey"
-                    placeholder={"Mật khẩu"}
-                  />
+                  <div style={{ display: "block" }}>
+                    <Field
+                      component={Input}
+                      name="ngayCapNhat"
+                      placeholder={"Tài khoản"}
+                    />
+
+                    <Field
+                      component={Input}
+                      name="nhanXet"
+                      className="TNKey"
+                      placeholder={"Mật khẩu"}
+                    />
+                  </div>
+                  <div>
+                    <ButtonCustom
+                      title="Tiếp tục"
+                      style={{ maxWidth: "100px" }}
+                    />
+                  </div>
                 </Form>
               );
             }}
           </Formik>
-        </div>
-      </Modal>
+        </Modal>
+      )}
     </Header>
   );
 };
