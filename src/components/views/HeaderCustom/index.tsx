@@ -8,39 +8,22 @@ import {
 import {
   Avatar,
   Badge,
-  Button,
   Dropdown,
   Flex,
   Input,
   Layout,
   Menu,
-  MenuProps,
   Modal,
   Space,
 } from "antd";
-import React, { useState } from "react";
+import { Field, Form, Formik, FormikProps } from "formik";
+import React, { useContext, useState } from "react";
+import { IconFacebook, IconGoogle } from "../../../global/linkImage";
+import { ButtonCustom } from "../../customComponents/ButtonCustom";
+import { InputCustom } from "../../customComponents/InputCustom";
+import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
 
 const { Header } = Layout;
-
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: (
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.antgroup.com"
-      >
-        Cài đặt tài khoản
-      </a>
-    ),
-  },
-  {
-    key: "4",
-    danger: false,
-    label: `Đăng nhập`,
-  },
-];
 
 const menu = (
   <Menu>
@@ -54,6 +37,8 @@ const menu = (
 const HeaderCustom: React.FC = () => {
   const [menuSelected, setMenuSelected] = useState<number>(1);
   const [openLogin, setOpenLogin] = useState<boolean>(false);
+  const { loading, setLoading } = useContext(StoreContext);
+
   const menuAvatar = (
     <Menu>
       <Menu.Item key="1">Cài đặt tài khoản</Menu.Item>
@@ -136,24 +121,71 @@ const HeaderCustom: React.FC = () => {
           </Space>
         </Dropdown>
       </div>
-      <Modal
-        width={1400}
-        open={openLogin}
-        onCancel={() => {
-          setOpenLogin(false);
-        }}
-        footer={false}
-        centered
-      >
-        Đăng nhập
-        <Button
-          onClick={() => {
+      {openLogin && (
+        <Modal
+          width={1400}
+          open={openLogin}
+          onCancel={() => {
             setOpenLogin(false);
           }}
+          footer={false}
+          centered
+          maskClosable={false}
         >
-          Đóng
-        </Button>
-      </Modal>
+          <div>Đăng nhập</div>
+          <div>
+            <ButtonCustom
+              title="Đăng nhập với Facebook"
+              urlImage={IconFacebook}
+            />
+          </div>
+          <div>
+            <ButtonCustom title="Đăng nhập với Google" urlImage={IconGoogle} />
+          </div>
+          <div>Hoặc nhập thông tin tài khoản:</div>
+          <Formik
+            initialValues={{}}
+            onSubmit={(values: any) => {
+              console.log(values);
+              console.log(loading);
+              setOpenLogin(false);
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+              }, 5000);
+            }}
+            // innerRef={formikRef}
+            // validationSchema={validateSubmit}
+          >
+            {(propsFormik: FormikProps<any>) => {
+              const { values, setValues, setFieldValue } = propsFormik;
+              return (
+                <Form>
+                  <Field
+                    component={InputCustom}
+                    name="tenDangNhap"
+                    placeholder={"Tên đăng nhập"}
+                  />
+
+                  <Field
+                    component={InputCustom}
+                    name="matKhau"
+                    placeholder={"Mật khẩu"}
+                    type={"password"}
+                  />
+                  <div>
+                    <ButtonCustom
+                      title="Tiếp tục"
+                      style={{ maxWidth: "100px" }}
+                      htmlType="submit"
+                    />
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        </Modal>
+      )}
     </Header>
   );
 };
