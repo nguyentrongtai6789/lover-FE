@@ -17,10 +17,11 @@ import {
   Space,
 } from "antd";
 import { Field, Form, Formik, FormikProps } from "formik";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IconFacebook, IconGoogle } from "../../../global/linkImage";
 import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
+import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
 
 const { Header } = Layout;
 
@@ -36,6 +37,8 @@ const menu = (
 const HeaderCustom: React.FC = () => {
   const [menuSelected, setMenuSelected] = useState<number>(1);
   const [openLogin, setOpenLogin] = useState<boolean>(false);
+  const { loading, setLoading } = useContext(StoreContext);
+
   const menuAvatar = (
     <Menu>
       <Menu.Item key="1">Cài đặt tài khoản</Menu.Item>
@@ -144,6 +147,12 @@ const HeaderCustom: React.FC = () => {
             initialValues={{}}
             onSubmit={(values: any) => {
               console.log(values);
+              console.log(loading);
+              setOpenLogin(false);
+              setLoading(true);
+              setTimeout(() => {
+                setLoading(false);
+              }, 5000);
             }}
             // innerRef={formikRef}
             // validationSchema={validateSubmit}
