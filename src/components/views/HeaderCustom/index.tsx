@@ -20,6 +20,7 @@ import { Field, Form, Formik, FormikProps } from "formik";
 import React, { useState } from "react";
 import { IconFacebook, IconGoogle } from "../../../global/linkImage";
 import { ButtonCustom } from "../../customComponents/ButtonCustom";
+import { InputCustom } from "../../customComponents/InputCustom";
 
 const { Header } = Layout;
 
@@ -148,26 +149,26 @@ const HeaderCustom: React.FC = () => {
             // validationSchema={validateSubmit}
           >
             {(propsFormik: FormikProps<any>) => {
+              const { values, setValues, setFieldValue } = propsFormik;
               return (
                 <Form>
-                  <div style={{ display: "block" }}>
-                    <Field
-                      component={Input}
-                      name="ngayCapNhat"
-                      placeholder={"Tài khoản"}
-                    />
+                  <Field
+                    component={InputCustom}
+                    name="tenDangNhap"
+                    placeholder={"Tên đăng nhập"}
+                  />
 
-                    <Field
-                      component={Input}
-                      name="nhanXet"
-                      className="TNKey"
-                      placeholder={"Mật khẩu"}
-                    />
-                  </div>
+                  <Field
+                    component={InputCustom}
+                    name="matKhau"
+                    placeholder={"Mật khẩu"}
+                    type={"password"}
+                  />
                   <div>
                     <ButtonCustom
                       title="Tiếp tục"
                       style={{ maxWidth: "100px" }}
+                      htmlType="submit"
                     />
                   </div>
                 </Form>
