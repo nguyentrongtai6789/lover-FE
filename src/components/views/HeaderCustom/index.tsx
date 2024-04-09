@@ -126,7 +126,7 @@ const HeaderCustom: React.FC = () => {
           }}
           footer={false}
           centered
-          closeIcon={false}
+          maskClosable={false}
         >
           <div>Đăng nhập</div>
           <div>
