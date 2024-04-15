@@ -19,7 +19,14 @@ import TrangChu from "./components/views/TrangChu";
 
 const App: React.FC = () => {
   return (
-    <div style={{ display: "flex", position: "relative" }}>
+    <div
+      style={{
+        display: "flex",
+        position: "relative",
+        maxHeight: "100vh",
+        overflowY: "unset",
+      }}
+    >
       <StoreProvider>
         <Layout style={{ padding: 0, marginTop: 0, backgroundColor: "red" }}>
           <div className="header-wrapper">

@@ -6,9 +6,9 @@ const LoadingCustom: React.FC = () => {
   const { loading } = useContext(StoreContext);
   if (loading) {
     return (
-      <Flex gap="small" vertical className="loading-custom-wrap">
-        <Flex gap="small">
-          <Spin tip="Loading">
+      <Flex gap="large" vertical className="loading-custom-wrap">
+        <Flex gap="large">
+          <Spin tip="Đang tải...">
             <div className="content" />
           </Spin>
         </Flex>

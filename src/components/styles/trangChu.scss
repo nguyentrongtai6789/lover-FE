@@ -19,3 +19,57 @@
     }
   }
 }
+
+.ant-layout-content {
+  .div-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); // Tạo 4 cột có kích thước bằng nhau
+    gap: 20px; // Khoảng cách giữa các thẻ div con
+    max-height: calc(100vh - 69px);
+    overflow-y: auto;
+    max-width: calc(100vw - 200px);
+    @media (max-width: 800px) {
+      width: 100vw;
+      max-width: unset;
+    }
+    .div-child {
+      display: flex;
+      flex-direction: column;
+      // border: 1px solid black;
+      justify-content: center;
+      align-items: center;
+      // background: #666;
+      cursor: pointer;
+
+      img {
+        height: 85%;
+        width: 85%;
+      }
+      .name-book {
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+/* Đối tượng thanh cuộn */
+::-webkit-scrollbar {
+  width: 8px; /* Độ rộng của thanh cuộn */
+}
+
+/* Nền của thanh cuộn */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Màu nền */
+}
+
+/* Màu của thanh cuộn khi không được hover */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Màu thanh cuộn */
+}
+
+/* Màu của thanh cuộn khi hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Màu thanh cuộn khi hover */
+}

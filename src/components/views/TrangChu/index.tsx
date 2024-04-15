@@ -1,14 +1,16 @@
-import { Layout, theme } from "antd";
+import { Layout, Tooltip, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
-import { listCategories } from "../../../fakeData";
-import { ICategory } from "../../../global/interface";
+import { listBookAmThucNauAn, listCategories } from "../../../fakeData";
+import { IBookThuVien, ICategory } from "../../../global/interface";
 
 const TrangChu = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const lissBook = listBookAmThucNauAn;
   return (
-    <Layout style={{ padding: "24px 24px 24px" }}>
+    <Layout style={{ padding: "" }}>
       <div className="menu-category">
         {listCategories.map((item: ICategory, index) => (
           <span>{item.name}</span>
@@ -21,9 +23,17 @@ const TrangChu = () => {
           minHeight: 280,
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
+          width: "100%",
         }}
       >
-        Content Content Content
+        <div className="div-content">
+          {listBookAmThucNauAn.map((item: IBookThuVien, index) => (
+            <div className="div-child">
+              <img src={item.urlImage ? item.urlImage : ""} alt="No image" />
+              <div className="name-book">{item.name}</div>
+            </div>
+          ))}
+        </div>
       </Content>
     </Layout>
   );

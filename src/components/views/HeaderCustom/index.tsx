@@ -29,8 +29,7 @@ const menu = (
   <Menu>
     <Menu.Item key="1">TRANG CHỦ</Menu.Item>
     <Menu.Item key="2">VỀ CHÚNG TÔI</Menu.Item>
-    <Menu.Item key="3">MUA SÁCH</Menu.Item>
-    <Menu.Item key="3">ĐỌC MIỄN PHÍ</Menu.Item>
+    <Menu.Item key="3">THƯ VIỆN SÁCH</Menu.Item>
   </Menu>
 );
 
@@ -79,17 +78,10 @@ const HeaderCustom: React.FC = () => {
           </div>
           <div
             className="div-header"
-            style={menuSelected === 3 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(3)}
-          >
-            MUA SÁCH
-          </div>
-          <div
-            className="div-header"
             style={menuSelected === 4 ? { backgroundColor: "#111" } : {}}
             onClick={() => setMenuSelected(4)}
           >
-            ĐỌC MIỄN PHÍ
+            THƯ VIỆN SÁCH
           </div>
         </div>
         <Dropdown overlay={menu} className="button-menu">
