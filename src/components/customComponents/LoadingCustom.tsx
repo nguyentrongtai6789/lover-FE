@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Alert, Flex, Spin } from "antd";
 import { StoreContext } from "../reduxAndStore/StoreContextCustom";
 
 const LoadingCustom: React.FC = () => {
   const { loading } = useContext(StoreContext);
+
   if (loading) {
     return (
       <Flex gap="large" vertical className="loading-custom-wrap">
