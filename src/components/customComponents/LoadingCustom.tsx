@@ -8,7 +8,7 @@ const LoadingCustom: React.FC = () => {
     return (
       <Flex gap="large" vertical className="loading-custom-wrap">
         <Flex gap="large">
-          <Spin tip="Đang tải...">
+          <Spin tip="Đang tải..." size={"large"}>
             <div className="content" />
           </Spin>
         </Flex>
