@@ -1,7 +1,6 @@
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Avatar, Dropdown, Modal, Space, notification } from "antd";
-import axios from "axios";
 import { Field, Form, Formik, FormikProps } from "formik";
 import React, { useContext, useState } from "react";
 import { IconFacebook, IconGoogle } from "../../../global/linkImage";
@@ -40,7 +39,10 @@ const DropdowMenu: React.FC = () => {
         `http://localhost:8080/api/login`,
         value
       );
-      if (res?.status === 200) {
+
+      if (res?.status === 200 && res.data.data === 200) {
+        console.log(res);
+        localStorage.setItem("user-info", JSON.stringify(res.data));
         const openNotification = () => {
           notification.open({
             message: "",
