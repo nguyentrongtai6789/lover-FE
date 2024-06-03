@@ -9,6 +9,7 @@ import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
 import NotificationCustom from "../../customComponents/NotificationCustom";
 import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
+import { LOGIN } from "../../services/api";
 
 const DropdowMenu: React.FC = () => {
   const [openLogin, setOpenLogin] = useState<boolean>(false);
@@ -36,7 +37,7 @@ const DropdowMenu: React.FC = () => {
   const handleLogin = async (value: any) => {
     setLoading(true);
     axios
-      .post(`http://localhost:8080/api/login`, value)
+      .post(`${LOGIN}`, value)
       .then((res: AxiosResponse) => {
         if (res.data.code === 200) {
           return NotificationCustom("Đăng nhập thành công", "success");
