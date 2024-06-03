@@ -1,13 +1,14 @@
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Avatar, Dropdown, Modal, Space, notification } from "antd";
+import { Avatar, Dropdown, Modal, Space } from "antd";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Field, Form, Formik, FormikProps } from "formik";
 import React, { useContext, useState } from "react";
 import { IconFacebook, IconGoogle } from "../../../global/linkImage";
 import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
+import NotificationCustom from "../../customComponents/NotificationCustom";
 import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
-import httpMethod from "../../services/httpMethod";
 
 const DropdowMenu: React.FC = () => {
   const [openLogin, setOpenLogin] = useState<boolean>(false);
@@ -34,36 +35,29 @@ const DropdowMenu: React.FC = () => {
 
   const handleLogin = async (value: any) => {
     setLoading(true);
-    try {
-      const res = await httpMethod.post(
-        `http://localhost:8080/api/login`,
-        value
-      );
-
-      if (res?.status === 200 && res.data.data === 200) {
-        console.log(res);
-        localStorage.setItem("user-info", JSON.stringify(res.data));
-        const openNotification = () => {
-          notification.open({
-            message: "",
-            description: "Đăng nhập thành công!",
-          });
-        };
-        setOpenLogin(false);
-        return openNotification();
-      } else {
-        const openNotification = () => {
-          notification.open({
-            message: "",
-            description: "Tài khoản hoặc mật khẩu không đúng!",
-          });
-        };
-        return openNotification();
-      }
-    } catch {
-    } finally {
-      setLoading(false);
-    }
+    axios
+      .post(`http://localhost:8080/api/login`, value)
+      .then((res: AxiosResponse) => {
+        if (res.data.code === 200) {
+          return NotificationCustom("Đăng nhập thành công", "success");
+        }
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.status === 401) {
+          return NotificationCustom(
+            "Tài khoản hoặc mật khẩu không đúng",
+            "error"
+          );
+        }
+        if (error.code === "ERR_NETWORK") {
+          return NotificationCustom("Lỗi kết nối mạng", "error");
+        }
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      });
   };
 
   return (

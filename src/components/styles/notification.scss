@@ -1,0 +1,9 @@
+.ant-notification {
+  .ant-notification-notice-wrapper {
+    margin-bottom: unset;
+    border-radius: unset;
+    .ant-notification-notice-message {
+      display: none;
+    }
+  }
+}

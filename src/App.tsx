@@ -8,6 +8,7 @@ import "../src/components/styles/modal.scss";
 import "../src/components/styles/sider.scss";
 import "../src/components/styles/trangChu.scss";
 import "../src/components/styles/dropdown.scss";
+import "../src/components/styles/notification.scss";
 
 import LoadingCustom from "./components/customComponents/LoadingCustom";
 import { StoreProvider } from "./components/reduxAndStore/StoreContextCustom";
