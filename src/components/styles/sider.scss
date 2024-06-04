@@ -1,5 +1,5 @@
 .ant-layout-sider {
-  max-height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
   // border: 1px solid black;
   overflow-y: auto;
   background: #333 !important;
@@ -25,21 +25,21 @@
   }
 }
 /* Đối tượng thanh cuộn */
-.ant-layout-sider::-webkit-scrollbar {
-  width: 8px; /* Độ rộng của thanh cuộn */
-}
+// .ant-layout-sider::-webkit-scrollbar {
+//   width: 8px; /* Độ rộng của thanh cuộn */
+// }
 
-/* Nền của thanh cuộn */
-.ant-layout-sider::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Màu nền */
-}
+// /* Nền của thanh cuộn */
+// .ant-layout-sider::-webkit-scrollbar-track {
+//   background: #f1f1f1; /* Màu nền */
+// }
 
-/* Màu của thanh cuộn khi không được hover */
-.ant-layout-sider::-webkit-scrollbar-thumb {
-  background: #888; /* Màu thanh cuộn */
-}
+// /* Màu của thanh cuộn khi không được hover */
+// .ant-layout-sider::-webkit-scrollbar-thumb {
+//   background: #888; /* Màu thanh cuộn */
+// }
 
-/* Màu của thanh cuộn khi hover */
-.ant-layout-sider::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Màu thanh cuộn khi hover */
-}
+// /* Màu của thanh cuộn khi hover */
+// .ant-layout-sider::-webkit-scrollbar-thumb:hover {
+//   background: #555; /* Màu thanh cuộn khi hover */
+// }
