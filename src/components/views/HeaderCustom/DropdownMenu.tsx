@@ -9,7 +9,8 @@ import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
 import NotificationCustom from "../../customComponents/NotificationCustom";
 import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
-import { LOGIN } from "../../services/api";
+import { FIND_ALL_ACCOUNT, LOGIN } from "../../services/api";
+import httpMethod from "../../services/httpMethod";
 
 const DropdowMenu: React.FC = () => {
   const [openLogin, setOpenLogin] = useState<boolean>(false);
@@ -39,18 +40,19 @@ const DropdowMenu: React.FC = () => {
     axios
       .post(`${LOGIN}`, value)
       .then((res: AxiosResponse) => {
-        if (res.data.code === 200) {
+        if (res?.status === 200) {
+          localStorage.setItem("user", JSON.stringify(res.data));
           return NotificationCustom("Đăng nhập thành công", "success");
         }
       })
       .catch((error: AxiosError) => {
-        if (error.response?.status === 401) {
+        if (error?.response?.status === 401) {
           return NotificationCustom(
             "Tài khoản hoặc mật khẩu không đúng",
             "error"
           );
         }
-        if (error.code === "ERR_NETWORK") {
+        if (error?.code === AxiosError.ERR_NETWORK) {
           return NotificationCustom("Lỗi kết nối mạng", "error");
         }
       })
@@ -58,6 +60,26 @@ const DropdowMenu: React.FC = () => {
         setTimeout(() => {
           setLoading(false);
         }, 2000);
+      });
+  };
+
+  const handleDemo = async () => {
+    setLoading(true);
+    httpMethod
+      .get(`${FIND_ALL_ACCOUNT}`)
+      .then((res: AxiosResponse) => {
+        if (res.data.code === 200) {
+          return NotificationCustom(
+            "Lấy thông tin all account thành công",
+            "success"
+          );
+        }
+      })
+      .catch((error: AxiosError) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
 
@@ -120,6 +142,12 @@ const DropdowMenu: React.FC = () => {
                       title="Tiếp tục"
                       style={{ maxWidth: "100px" }}
                       htmlType="submit"
+                    />
+                    <ButtonCustom
+                      title="Demo"
+                      style={{ maxWidth: "100px" }}
+                      htmlType="button"
+                      onClick={() => handleDemo()}
                     />
                   </div>
                 </Form>
