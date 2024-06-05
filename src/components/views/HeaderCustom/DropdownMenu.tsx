@@ -63,25 +63,28 @@ const DropdowMenu: React.FC = () => {
       });
   };
 
-  const handleDemo = async () => {
-    setLoading(true);
-    httpMethod
-      .get(`${FIND_ALL_ACCOUNT}`)
-      .then((res: AxiosResponse) => {
-        if (res.data.code === 200) {
-          return NotificationCustom(
-            "Lấy thông tin all account thành công",
-            "success"
-          );
-        }
-      })
-      .catch((error: AxiosError) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  // const handleDemo = async () => {
+  //   setLoading(true);
+  //   httpMethod.attachTokenToHeader();
+  //   httpMethod
+  //     .get(`${FIND_ALL_ACCOUNT}`)
+  //     .then((res: AxiosResponse) => {
+  //       if (res.status === 200) {
+  //         return NotificationCustom(
+  //           "Lấy thông tin tài khoản thành công",
+  //           "success"
+  //         );
+  //       }
+  //     })
+  //     .catch((error: AxiosError) => {
+  //       if (error) {
+  //         return NotificationCustom(`Xảy ra lỗi ${error.message}`, "error");
+  //       }
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // };
 
   return (
     <>
@@ -142,12 +145,6 @@ const DropdowMenu: React.FC = () => {
                       title="Tiếp tục"
                       style={{ maxWidth: "100px" }}
                       htmlType="submit"
-                    />
-                    <ButtonCustom
-                      title="Demo"
-                      style={{ maxWidth: "100px" }}
-                      htmlType="button"
-                      onClick={() => handleDemo()}
                     />
                   </div>
                 </Form>
