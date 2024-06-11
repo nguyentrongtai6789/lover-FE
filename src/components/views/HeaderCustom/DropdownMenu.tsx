@@ -9,8 +9,19 @@ import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
 import NotificationCustom from "../../customComponents/NotificationCustom";
 import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
-import { FIND_ALL_ACCOUNT, LOGIN } from "../../services/api";
-import httpMethod from "../../services/httpMethod";
+import { LOGIN } from "../../services/api";
+
+import * as Yup from "yup";
+
+const validateLogin = Yup.object().shape({
+  username: Yup.string().required("Bạn chưa điền Tên đăng nhập").nullable(),
+  password: Yup.string().required("Bạn chưa điền Mật khẩu").nullable(),
+});
+
+interface ILoginValues {
+  username: string;
+  password: string;
+}
 
 const DropdowMenu: React.FC = () => {
   const [openLogin, setOpenLogin] = useState<boolean>(false);
@@ -35,7 +46,7 @@ const DropdowMenu: React.FC = () => {
     },
   ];
 
-  const handleLogin = async (value: any) => {
+  const handleLogin = async (value: ILoginValues) => {
     setLoading(true);
     axios
       .post(`${LOGIN}`, value)
@@ -63,28 +74,10 @@ const DropdowMenu: React.FC = () => {
       });
   };
 
-  // const handleDemo = async () => {
-  //   setLoading(true);
-  //   httpMethod.attachTokenToHeader();
-  //   httpMethod
-  //     .get(`${FIND_ALL_ACCOUNT}`)
-  //     .then((res: AxiosResponse) => {
-  //       if (res.status === 200) {
-  //         return NotificationCustom(
-  //           "Lấy thông tin tài khoản thành công",
-  //           "success"
-  //         );
-  //       }
-  //     })
-  //     .catch((error: AxiosError) => {
-  //       if (error) {
-  //         return NotificationCustom(`Xảy ra lỗi ${error.message}`, "error");
-  //       }
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // };
+  const initialValues: ILoginValues = {
+    username: "",
+    password: "",
+  };
 
   return (
     <>
@@ -98,6 +91,7 @@ const DropdowMenu: React.FC = () => {
       </Dropdown>
       {openLogin && (
         <Modal
+          className="modal-dang-nhap"
           width={1400}
           open={openLogin}
           onCancel={() => {
@@ -107,7 +101,15 @@ const DropdowMenu: React.FC = () => {
           centered
           maskClosable={false}
         >
-          <div>Đăng nhập</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontWeight: "bold",
+            }}
+          >
+            Đăng nhập
+          </div>
           <div>
             <ButtonCustom
               title="Đăng nhập với Facebook"
@@ -117,12 +119,21 @@ const DropdowMenu: React.FC = () => {
           <div>
             <ButtonCustom title="Đăng nhập với Google" urlImage={IconGoogle} />
           </div>
-          <div>Hoặc nhập thông tin tài khoản:</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            Hoặc nhập thông tin tài khoản:
+          </div>
           <Formik
-            initialValues={{}}
-            onSubmit={(values: any) => {
+            initialValues={initialValues}
+            onSubmit={(values: ILoginValues) => {
               handleLogin(values);
             }}
+            validationSchema={validateLogin}
           >
             {(propsFormik: FormikProps<any>) => {
               const { values, setValues, setFieldValue } = propsFormik;
@@ -133,14 +144,19 @@ const DropdowMenu: React.FC = () => {
                     name="username"
                     placeholder={"Tên đăng nhập"}
                   />
-
                   <Field
                     component={InputCustom}
                     name="password"
                     placeholder={"Mật khẩu"}
                     type={"password"}
                   />
-                  <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: "20px",
+                    }}
+                  >
                     <ButtonCustom
                       title="Tiếp tục"
                       style={{ maxWidth: "100px" }}

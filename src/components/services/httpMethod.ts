@@ -4,9 +4,8 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { URL } from "./urls";
 import NotificationCustom from "../customComponents/NotificationCustom";
-import { error } from "console";
+import { URL } from "./api";
 
 class Services {
   axios: AxiosInstance;
@@ -21,6 +20,8 @@ class Services {
         return Promise.resolve(response);
       },
       function (error: AxiosError) {
+        //hai trường hợp này sẽ bắt lỗi chung ở đây, còn lại các lỗi khác sẽ thông báo cụ thể
+        //mỗi khi gọi phương thức
         if (error?.response?.status === 401) {
           NotificationCustom(
             "Thông tin đăng nhập hết hạn, vui lòng đăng nhập lại",
@@ -38,10 +39,7 @@ class Services {
   }
 
   //gắn token vào header request:
-  attachTokenToHeader() {
-    const user = localStorage.getItem("user");
-    if (!user) return;
-    const token = JSON.parse(user).token;
+  attachTokenToHeader(token: string) {
     this.axios.interceptors.request.use(function (config: any) {
       config.headers.Authorization = `Bearer ${token}`;
       return config;

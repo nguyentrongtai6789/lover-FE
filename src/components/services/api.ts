@@ -1,4 +1,4 @@
-import { URL } from "./urls";
+export const URL = process.env.REACT_APP_API_BOOK_STORE;
 
 export const LOGIN = `${URL}/login`;
 
