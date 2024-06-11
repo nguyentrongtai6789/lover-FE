@@ -4,8 +4,8 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
-import { URL } from "./urls";
 import NotificationCustom from "../customComponents/NotificationCustom";
+import { URL } from "./api";
 
 class Services {
   axios: AxiosInstance;
@@ -17,31 +17,33 @@ class Services {
     });
     this.axios.interceptors.response.use(
       function (response: AxiosResponse) {
-        return response;
+        return Promise.resolve(response);
       },
       function (error: AxiosError) {
+        //hai trường hợp này sẽ bắt lỗi chung ở đây, còn lại các lỗi khác sẽ thông báo cụ thể
+        //mỗi khi gọi phương thức
         if (error?.response?.status === 401) {
           NotificationCustom(
             "Thông tin đăng nhập hết hạn, vui lòng đăng nhập lại",
             "error"
           );
-        } else {
-          return error;
+          return Promise.reject();
         }
+        if (error?.code === AxiosError.ERR_NETWORK) {
+          NotificationCustom("Lỗi kết nối mạng", "error");
+          return Promise.reject();
+        }
+        return Promise.reject(error);
       }
     );
   }
 
+  //gắn token vào header request:
   attachTokenToHeader(token: string) {
-    this.axios.interceptors.request.use(
-      function (config: any) {
-        config.headers.Authorization = `Bearer ${token}`;
-        return config;
-      },
-      function (error: any) {
-        return error;
-      }
-    );
+    this.axios.interceptors.request.use(function (config: any) {
+      config.headers.Authorization = `Bearer ${token}`;
+      return config;
+    });
   }
 
   public get<T = any, R = T, D = any>(
@@ -52,16 +54,17 @@ class Services {
       this.axios
         .get<T, AxiosResponse<R>, D>(url, config)
         .then((response) => resolve(response))
-        .catch((error: AxiosError) => reject(error));
+        .catch((error: AxiosError) => {
+          reject(error);
+        });
     });
   }
 
-  public post<D = any, R = any>(
+  public post<D, R>(
     url: string,
-    data: D,
-    config?: AxiosRequestConfig<D>
-  ): Promise<AxiosResponse<R, D>>;
-  public post<D, R>(url: string, data?: D, config: any = {}): Promise<unknown> {
+    data?: D,
+    config: any = {}
+  ): Promise<AxiosResponse<R, D>> {
     return new Promise((resolve, reject) => {
       this.axios
         .post<D, AxiosResponse<R>>(url, data, config)
