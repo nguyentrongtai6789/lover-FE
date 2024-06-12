@@ -1,17 +1,23 @@
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Avatar, Dropdown, Modal, Space } from "antd";
-import axios, { AxiosError, AxiosResponse } from "axios";
 import { Field, Form, Formik, FormikProps } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IconFacebook, IconGoogle } from "../../../global/linkImage";
 import { ButtonCustom } from "../../customComponents/ButtonCustom";
 import { InputCustom } from "../../customComponents/InputCustom";
-import NotificationCustom from "../../customComponents/NotificationCustom";
 import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
-import { LOGIN } from "../../services/api";
 
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
+import {
+  LOGIN_REQUEST,
+  LOGOUT,
+} from "../../reduxAndStore/redux/actions/actionTypes";
+import { LOGGED_IN } from "../../reduxAndStore/redux/statusTypes";
+import httpMethod from "../../services/httpMethod";
+import { AxiosError, AxiosResponse } from "axios";
+import NotificationCustom from "../../customComponents/NotificationCustom";
 
 const validateLogin = Yup.object().shape({
   username: Yup.string().required("Bạn chưa điền Tên đăng nhập").nullable(),
@@ -26,6 +32,21 @@ interface ILoginValues {
 const DropdowMenu: React.FC = () => {
   const [openLogin, setOpenLogin] = useState<boolean>(false);
   const { setLoading } = useContext(StoreContext);
+
+  const loginSelector = useSelector((state: any) => state.login.status);
+
+  const loading = useSelector((state: any) => state.login.loading);
+
+  useEffect(() => {
+    setLoading(loading);
+  }, [loading]);
+
+  const isLogin = loginSelector === LOGGED_IN ? true : false;
+
+  useEffect(() => {
+    if (isLogin) setOpenLogin(false);
+  }, [isLogin]);
+
   const items: MenuProps["items"] = [
     {
       key: "1",
@@ -36,47 +57,43 @@ const DropdowMenu: React.FC = () => {
       label: (
         <a
           onClick={() => {
-            setOpenLogin(true);
+            isLogin ? handleLogout() : setOpenLogin(true);
           }}
         >
-          Đăng nhập
+          {isLogin ? "Đăng xuất" : "Đăng nhập"}
         </a>
       ),
-      // icon: <UserOutlined />,
     },
   ];
 
-  const handleLogin = async (value: ILoginValues) => {
-    setLoading(true);
-    axios
-      .post(`${LOGIN}`, value)
-      .then((res: AxiosResponse) => {
-        if (res?.status === 200) {
-          localStorage.setItem("user", JSON.stringify(res.data));
-          return NotificationCustom("Đăng nhập thành công", "success");
-        }
-      })
-      .catch((error: AxiosError) => {
-        if (error?.response?.status === 401) {
-          return NotificationCustom(
-            "Tài khoản hoặc mật khẩu không đúng",
-            "error"
-          );
-        }
-        if (error?.code === AxiosError.ERR_NETWORK) {
-          return NotificationCustom("Lỗi kết nối mạng", "error");
-        }
-      })
-      .finally(() => {
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      });
+  const dispatch = useDispatch();
+
+  const handleLogin = (values: ILoginValues) => {
+    dispatch({ type: LOGIN_REQUEST, values });
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: LOGOUT });
   };
 
   const initialValues: ILoginValues = {
     username: "",
     password: "",
+  };
+
+  const handleDemo = () => {
+    setLoading(true);
+    httpMethod
+      .get("http://localhost:8080/api/find-all-account")
+      .then((res: AxiosResponse) => {
+        if (res.status === 200) {
+          return NotificationCustom("Lấy thông tin thành công", "success");
+        }
+      })
+      .catch((err: AxiosError) => {})
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -161,6 +178,14 @@ const DropdowMenu: React.FC = () => {
                       title="Tiếp tục"
                       style={{ maxWidth: "100px" }}
                       htmlType="submit"
+                    />
+                    <ButtonCustom
+                      title="Demo"
+                      style={{ maxWidth: "100px" }}
+                      htmlType="button"
+                      onClick={() => {
+                        handleDemo();
+                      }}
                     />
                   </div>
                 </Form>

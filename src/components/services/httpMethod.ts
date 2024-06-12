@@ -20,18 +20,14 @@ class Services {
         return Promise.resolve(response);
       },
       function (error: AxiosError) {
-        //hai trường hợp này sẽ bắt lỗi chung ở đây, còn lại các lỗi khác sẽ thông báo cụ thể
-        //mỗi khi gọi phương thức
         if (error?.response?.status === 401) {
           NotificationCustom(
             "Thông tin đăng nhập hết hạn, vui lòng đăng nhập lại",
             "error"
           );
-          return Promise.reject();
         }
         if (error?.code === AxiosError.ERR_NETWORK) {
           NotificationCustom("Lỗi kết nối mạng", "error");
-          return Promise.reject();
         }
         return Promise.reject(error);
       }

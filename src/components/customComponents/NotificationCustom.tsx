@@ -17,7 +17,7 @@ const NotificationCustom = (
     description: description,
     type: type,
     closeIcon: false,
-    duration: duration ? duration : 2,
+    duration: duration ? duration : 1,
     icon:
       type === "error" ? (
         <ExclamationCircleOutlined />

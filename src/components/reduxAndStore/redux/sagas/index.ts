@@ -1,28 +1,39 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { call, cancel, cancelled, fork, put, take } from "redux-saga/effects";
+import httpMethod from "../../../services/httpMethod";
+import NotificationCustom from "../../../customComponents/NotificationCustom";
 
-export function fakeAuthorize(user: string, password: string) {
+interface ILoginValues {
+  username: string;
+  password: string;
+}
+
+export function handleLogin(values: ILoginValues) {
   return new Promise(async (resolve, reject) => {
     try {
-      const result = await axios.post("http://localhost:8080/api/login", {
-        username: user,
-        password: password,
-      });
-      resolve(result.data.token);
-    } catch (error) {
+      const res = await axios.post("http://localhost:8080/api/login", values);
+      if (res.status === 200) {
+        NotificationCustom("Đăng nhập thành công", "success");
+      }
+      resolve(res.data);
+    } catch (error: any) {
+      if (error?.response?.status === 401) {
+        NotificationCustom("Tài khoản hoặc mật khẩu không đúng", "error");
+      }
+      if (error?.code === AxiosError.ERR_NETWORK) {
+        NotificationCustom("Lỗi kết nối mạng", "error");
+      }
       reject(error);
     }
   });
 }
 
-export function* authorize(
-  user: string,
-  password: string
-): Generator<any, void, any> {
+export function* authorize(values: ILoginValues): Generator<any, void, any> {
   try {
-    const token = yield call(fakeAuthorize, user, password);
+    const data = yield call(handleLogin, values);
     yield put({ type: "LOGIN_SUCCESS" });
-    yield put({ type: "SAVE_TOKEN", token });
+    yield put({ type: "SAVE_DATA", data });
+    httpMethod.attachTokenToHeader(data.token);
   } catch (error) {
     yield put({ type: "LOGIN_ERROR", error });
   } finally {
@@ -34,12 +45,14 @@ export function* authorize(
 
 export function* loginFlow(): Generator<any, void, any> {
   while (true) {
-    const { user, password } = yield take("LOGIN_REQUEST");
-    const task = yield fork(authorize, user, password);
+    const { values } = yield take("LOGIN_REQUEST");
+    const task = yield fork(authorize, values);
     const action = yield take(["LOGOUT", "LOGIN_ERROR"]);
     if (action.type === "LOGOUT") {
+      localStorage.clear();
       yield cancel(task);
       yield put({ type: "DELETE_TOKEN" });
+      window.location.reload();
     }
   }
 }
