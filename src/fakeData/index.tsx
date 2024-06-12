@@ -23,6 +23,15 @@ export const listCategories: ICategory[] = [
   { id: 20, name: "Kinh tế - Quản lý" },
 ];
 
+export const listCategoriesTrangChu: ICategory[] = [
+  { id: 1, name: "Nuôi dạy con" },
+  { id: 2, name: "Kiến thức mẹ bầu" },
+  { id: 3, name: "Chăm sóc bé" },
+  { id: 4, name: "Sau khi sinh" },
+  { id: 5, name: "Gia đình" },
+  { id: 6, name: "Linh tinh" },
+];
+
 export const listBookAmThucNauAn: IBookThuVien[] = [
   {
     id: 1,

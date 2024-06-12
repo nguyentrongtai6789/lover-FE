@@ -2,12 +2,13 @@ import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge, Flex, Input, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import DropdowMenu from "./DropdownMenu";
+import { useNavigate } from "react-router-dom";
 
 const { Header } = Layout;
 
 const HeaderCustom: React.FC = () => {
   const [menuSelected, setMenuSelected] = useState<number>(1);
-
+  const navigate = useNavigate();
   return (
     <Header className="header">
       <div className="logo-header">
@@ -21,21 +22,30 @@ const HeaderCustom: React.FC = () => {
           <div
             className="div-header"
             style={menuSelected === 1 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(1)}
+            onClick={() => {
+              setMenuSelected(1);
+              navigate("trang-chu/noi-dung-chinh");
+            }}
           >
             TRANG CHỦ
           </div>
           <div
             className="div-header"
             style={menuSelected === 2 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(2)}
+            onClick={() => {
+              setMenuSelected(2);
+              navigate("ve-chung-toi/noi-dung-chinh");
+            }}
           >
             VỀ CHÚNG TÔI
           </div>
           <div
             className="div-header"
             style={menuSelected === 4 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(4)}
+            onClick={() => {
+              setMenuSelected(4);
+              navigate("thu-vien-sach/noi-dung-chinh");
+            }}
           >
             THƯ VIỆN SÁCH
           </div>
