@@ -43,9 +43,9 @@ const DropdowMenu: React.FC = () => {
 
   const isLogin = loginSelector === LOGGED_IN ? true : false;
 
-  useEffect(() => {
-    if (isLogin) setOpenLogin(false);
-  }, [isLogin]);
+  // useEffect(() => {
+  //   if (isLogin) setOpenLogin(false);
+  // }, [isLogin]);
 
   const items: MenuProps["items"] = [
     {

@@ -9,3 +9,18 @@ export interface IBookThuVien {
   name: string | null;
   description: string | null;
 }
+
+export interface IUser {
+  id: number;
+  name: string;
+  avatar: string;
+}
+
+export interface IBaiViet {
+  id: number;
+  tieuDe: string;
+  anhTieuDe: string;
+  noiDung: string;
+  tacGia: IUser;
+  createdAt: string;
+}
