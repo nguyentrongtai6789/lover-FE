@@ -1,35 +1,27 @@
 import { IBaiViet, IBookThuVien, ICategory } from "../global/interface";
 
 export const listCategories: ICategory[] = [
-  { id: 1, name: "Ẩm thực - Nấu ăn" },
-  { id: 2, name: "Cổ tích - Thần thoại" },
-  { id: 3, name: "Công nghệ thông tin" },
-  { id: 4, name: "Học ngoại ngữ" },
-  { id: 5, name: "Hồi ký - Tuỳ bút" },
-  { id: 6, name: "Huyền bí - Giả tưởng" },
-  { id: 7, name: "Khoa học - Kỹ thuật" },
-  { id: 8, name: "Kiếm hiệp - Tiên hiệp" },
-  { id: 9, name: "Kiến trúc - Xây dựng" },
-  { id: 10, name: "Kinh tế - Quản lý" },
-  { id: 11, name: "Ẩm thực - Nấu ăn" },
-  { id: 12, name: "Cổ tích - Thần thoại" },
-  { id: 13, name: "Công nghệ thông tin" },
-  { id: 14, name: "Học ngoại ngữ" },
-  { id: 15, name: "Hồi ký - Tuỳ bút" },
-  { id: 16, name: "Huyền bí - Giả tưởng" },
-  { id: 17, name: "Khoa học - Kỹ thuật" },
-  { id: 18, name: "Kiếm hiệp - Tiên hiệp" },
-  { id: 19, name: "Kiến trúc - Xây dựng" },
-  { id: 20, name: "Kinh tế - Quản lý" },
+  { id: 1, name: "Ẩm thực - Nấu ăn", pathName: "am-thuc-nau-an" },
+  { id: 2, name: "Cổ tích - Thần thoại", pathName: "co-tich-than-thoai" },
+  { id: 3, name: "Công nghệ thông tin", pathName: "cong-nghe-thong-tin" },
+  { id: 4, name: "Học ngoại ngữ", pathName: "hoc-ngoai-ngu" },
+  { id: 5, name: "Hồi ký - Tuỳ bút", pathName: "hoi-ky-tuy-but" },
+  { id: 6, name: "Huyền bí - Giả tưởng", pathName: "huyen-bi-gia-tuong" },
+  { id: 7, name: "Khoa học - Kỹ thuật", pathName: "khoa-hoc-ky-thuat" },
+  { id: 8, name: "Kiếm hiệp - Tiên hiệp", pathName: "kiem-hiep-tien-hiep" },
+  { id: 9, name: "Kiến trúc - Xây dựng", pathName: "kien-truc-xay-dung" },
+  { id: 10, name: "Kinh tế - Quản lý", pathName: "kinh-te-quan-ly" },
+  { id: 11, name: "Ẩm thực - Nấu ăn", pathName: "am-thuc-nau-an" },
+  { id: 12, name: "Cổ tích - Thần thoại", pathName: "co-tich-than-thoai" },
 ];
 
 export const listCategoriesTrangChu: ICategory[] = [
-  { id: 1, name: "Nuôi dạy con" },
-  { id: 2, name: "Kiến thức mẹ bầu" },
-  { id: 3, name: "Chăm sóc bé" },
-  { id: 4, name: "Sau khi sinh" },
-  { id: 5, name: "Gia đình" },
-  { id: 6, name: "Linh tinh" },
+  { id: 1, name: "Nuôi dạy con", pathName: "nuoi-day-con" },
+  { id: 2, name: "Kiến thức mẹ bầu", pathName: "kien-thuc-me-bau" },
+  { id: 3, name: "Chăm sóc bé", pathName: "cham-soc-be" },
+  { id: 4, name: "Sau khi sinh", pathName: "sau-khi-sinh" },
+  { id: 5, name: "Gia đình", pathName: "gia-dinh" },
+  { id: 6, name: "Linh tinh", pathName: "linh-tinh" },
 ];
 
 export const listBookAmThucNauAn: IBookThuVien[] = [
