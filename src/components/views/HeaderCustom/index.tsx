@@ -44,7 +44,7 @@ const HeaderCustom: React.FC = () => {
               }
               onClick={() => {
                 setMenuSelected(index + 1);
-                navigate(`${item.pathName}/noi-dung-chinh`);
+                navigate(`${item.pathName}/${item.listCategories[0].pathName}`);
               }}
             >
               {item.name}

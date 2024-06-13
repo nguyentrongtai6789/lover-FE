@@ -11,7 +11,7 @@ const ThuVienSachRoutes: RouteObject = {
   element: <Outlet />,
   children: [
     {
-      path: "noi-dung-chinh",
+      path: "am-thuc-nau-an",
       index: true,
       element: <ThuVienSach />,
     },

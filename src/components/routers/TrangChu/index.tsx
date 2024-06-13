@@ -13,12 +13,12 @@ const TrangChuRoutes: RouteObject = {
   element: <Outlet />,
   children: [
     {
-      path: "noi-dung-chinh",
+      path: "nuoi-day-con",
       index: true,
       element: <TrangChu />,
     },
     {
-      path: "noi-dung-chinh/:id",
+      path: "nuoi-day-con/:id",
       index: true,
       element: <ChiTietBaiViet />,
     },
