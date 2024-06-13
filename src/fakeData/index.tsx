@@ -1,6 +1,6 @@
-import { IBaiViet, IBookThuVien, ICategory } from "../global/interface";
+import { IBaiViet, IBookThuVien, ICategory, IMenu } from "../global/interface";
 
-export const listCategories: ICategory[] = [
+export const listCategoriesThuVienSach: ICategory[] = [
   { id: 1, name: "Ẩm thực - Nấu ăn", pathName: "am-thuc-nau-an" },
   { id: 2, name: "Cổ tích - Thần thoại", pathName: "co-tich-than-thoai" },
   { id: 3, name: "Công nghệ thông tin", pathName: "cong-nghe-thong-tin" },
@@ -156,4 +156,20 @@ export const listBaiViet: IBaiViet[] = [
     },
     createdAt: "12/6/2024",
   },
+];
+
+export const listMenu: IMenu[] = [
+  {
+    id: 1,
+    name: "Trang chủ",
+    pathName: "trang-chu",
+    listCategories: listCategoriesTrangChu,
+  },
+  {
+    id: 2,
+    name: "Thư viện sách",
+    pathName: "thu-vien-sach",
+    listCategories: listCategoriesThuVienSach,
+  },
+  { id: 3, name: "Về chúng tôi", pathName: "ve-chung-toi", listCategories: [] },
 ];

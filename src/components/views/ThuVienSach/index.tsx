@@ -1,7 +1,7 @@
-import { Layout, Tooltip, theme } from "antd";
+import { Layout, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
-import { listBookAmThucNauAn, listCategories } from "../../../fakeData";
-import { IBookThuVien, ICategory } from "../../../global/interface";
+import { listBookAmThucNauAn } from "../../../fakeData";
+import { IBookThuVien } from "../../../global/interface";
 import SideBarCustom from "../SideBarThuVienSach";
 
 const ThuVienSach = () => {

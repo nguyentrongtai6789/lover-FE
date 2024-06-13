@@ -1,10 +1,10 @@
 import type { MenuProps } from "antd";
 import { Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { listCategories } from "../../../fakeData";
 import { ICategory } from "../../../global/interface";
+import { listCategoriesThuVienSach } from "../../../fakeData";
 
-const items2: MenuProps["items"] = listCategories.map(
+const items2: MenuProps["items"] = listCategoriesThuVienSach.map(
   (item: ICategory, index) => {
     const key = String(index + 1);
     return {

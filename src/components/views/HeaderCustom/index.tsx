@@ -1,14 +1,31 @@
 import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Badge, Flex, Input, Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropdowMenu from "./DropdownMenu";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { listMenu } from "../../../fakeData";
+import { IMenu } from "../../../global/interface";
 
 const { Header } = Layout;
 
 const HeaderCustom: React.FC = () => {
-  const [menuSelected, setMenuSelected] = useState<number>(1);
+  const [menuSelected, setMenuSelected] = useState<number>(0);
+
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location) return;
+    const currentUrl = location.pathname;
+    for (let i = 0; i <= listMenu.length; i++) {
+      if (currentUrl.includes(listMenu[i].pathName)) {
+        setMenuSelected(i + 1);
+        break;
+      }
+    }
+  }, [location]);
+
   return (
     <Header className="header">
       <div className="logo-header">
@@ -19,36 +36,20 @@ const HeaderCustom: React.FC = () => {
       </div>
       <Flex gap="small" wrap="wrap">
         <div className="menu-header">
-          <div
-            className="div-header"
-            style={menuSelected === 1 ? { backgroundColor: "#111" } : {}}
-            onClick={() => {
-              setMenuSelected(1);
-              navigate("trang-chu/noi-dung-chinh");
-            }}
-          >
-            TRANG CHỦ
-          </div>
-          <div
-            className="div-header"
-            style={menuSelected === 2 ? { backgroundColor: "#111" } : {}}
-            onClick={() => {
-              setMenuSelected(2);
-              navigate("ve-chung-toi/noi-dung-chinh");
-            }}
-          >
-            VỀ CHÚNG TÔI
-          </div>
-          <div
-            className="div-header"
-            style={menuSelected === 4 ? { backgroundColor: "#111" } : {}}
-            onClick={() => {
-              setMenuSelected(4);
-              navigate("thu-vien-sach/noi-dung-chinh");
-            }}
-          >
-            THƯ VIỆN SÁCH
-          </div>
+          {listMenu.map((item: IMenu, index) => (
+            <div
+              className="div-header"
+              style={
+                menuSelected === index + 1 ? { backgroundColor: "#111" } : {}
+              }
+              onClick={() => {
+                setMenuSelected(index + 1);
+                navigate(`${item.pathName}/noi-dung-chinh`);
+              }}
+            >
+              {item.name}
+            </div>
+          ))}
         </div>
       </Flex>
       <div className="search-header-wrapper">

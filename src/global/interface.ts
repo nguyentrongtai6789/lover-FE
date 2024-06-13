@@ -25,3 +25,10 @@ export interface IBaiViet {
   tacGia: IUser;
   createdAt: string;
 }
+
+export interface IMenu {
+  id: number;
+  name: string;
+  pathName: string;
+  listCategories: ICategory[];
+}

@@ -1,8 +1,8 @@
 import type { MenuProps } from "antd";
 import { Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
-import { listCategories, listCategoriesTrangChu } from "../../../fakeData";
 import { ICategory } from "../../../global/interface";
+import { listCategoriesTrangChu } from "../../../fakeData";
 
 const items2: MenuProps["items"] = listCategoriesTrangChu.map(
   (item: ICategory, index) => {
