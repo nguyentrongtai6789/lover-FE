@@ -1,56 +1,30 @@
-import {
-  DownOutlined,
-  MenuUnfoldOutlined,
-  SearchOutlined,
-  ShoppingCartOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import {
-  Avatar,
-  Badge,
-  Dropdown,
-  Flex,
-  Input,
-  Layout,
-  Menu,
-  Modal,
-  Space,
-} from "antd";
-import { Field, Form, Formik, FormikProps } from "formik";
-import React, { useContext, useState } from "react";
-import { IconFacebook, IconGoogle } from "../../../global/linkImage";
-import { ButtonCustom } from "../../customComponents/ButtonCustom";
-import { InputCustom } from "../../customComponents/InputCustom";
-import { StoreContext } from "../../reduxAndStore/StoreContextCustom";
+import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Badge, Flex, Input, Layout, Menu } from "antd";
+import React, { useEffect, useState } from "react";
+import DropdowMenu from "./DropdownMenu";
+import { useLocation, useNavigate } from "react-router-dom";
+import { listMenu } from "../../../fakeData";
+import { IMenu } from "../../../global/interface";
 
 const { Header } = Layout;
 
-const menu = (
-  <Menu>
-    <Menu.Item key="1">TRANG CHỦ</Menu.Item>
-    <Menu.Item key="2">VỀ CHÚNG TÔI</Menu.Item>
-    <Menu.Item key="3">THƯ VIỆN SÁCH</Menu.Item>
-  </Menu>
-);
-
 const HeaderCustom: React.FC = () => {
-  const [menuSelected, setMenuSelected] = useState<number>(1);
-  const [openLogin, setOpenLogin] = useState<boolean>(false);
-  const { loading, setLoading } = useContext(StoreContext);
+  const [menuSelected, setMenuSelected] = useState<number>(0);
 
-  const menuAvatar = (
-    <Menu>
-      <Menu.Item key="1">Cài đặt tài khoản</Menu.Item>
-      <Menu.Item
-        key="2"
-        onClick={() => {
-          setOpenLogin(true);
-        }}
-      >
-        Đăng nhập
-      </Menu.Item>
-    </Menu>
-  );
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location) return;
+    const currentUrl = location.pathname;
+    for (let i = 0; i <= listMenu.length; i++) {
+      if (currentUrl.includes(listMenu[i].pathName)) {
+        setMenuSelected(i + 1);
+        break;
+      }
+    }
+  }, [location]);
 
   return (
     <Header className="header">
@@ -62,33 +36,21 @@ const HeaderCustom: React.FC = () => {
       </div>
       <Flex gap="small" wrap="wrap">
         <div className="menu-header">
-          <div
-            className="div-header"
-            style={menuSelected === 1 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(1)}
-          >
-            TRANG CHỦ
-          </div>
-          <div
-            className="div-header"
-            style={menuSelected === 2 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(2)}
-          >
-            VỀ CHÚNG TÔI
-          </div>
-          <div
-            className="div-header"
-            style={menuSelected === 4 ? { backgroundColor: "#111" } : {}}
-            onClick={() => setMenuSelected(4)}
-          >
-            THƯ VIỆN SÁCH
-          </div>
+          {listMenu.map((item: IMenu, index) => (
+            <div
+              className="div-header"
+              style={
+                menuSelected === index + 1 ? { backgroundColor: "#111" } : {}
+              }
+              onClick={() => {
+                setMenuSelected(index + 1);
+                navigate(`${item.pathName}/${item.listCategories[0].pathName}`);
+              }}
+            >
+              {item.name}
+            </div>
+          ))}
         </div>
-        <Dropdown overlay={menu} className="button-menu">
-          <Space>
-            <Avatar shape="square" size="large" icon={<MenuUnfoldOutlined />} />
-          </Space>
-        </Dropdown>
       </Flex>
       <div className="search-header-wrapper">
         <Input
@@ -106,78 +68,8 @@ const HeaderCustom: React.FC = () => {
         </Badge>
       </div>
       <div className="avatar-header">
-        <Dropdown overlay={menuAvatar}>
-          <Space>
-            <Avatar icon={<UserOutlined />} />
-            <DownOutlined />
-          </Space>
-        </Dropdown>
+        <DropdowMenu />
       </div>
-      {openLogin && (
-        <Modal
-          width={1400}
-          open={openLogin}
-          onCancel={() => {
-            setOpenLogin(false);
-          }}
-          footer={false}
-          centered
-          maskClosable={false}
-        >
-          <div>Đăng nhập</div>
-          <div>
-            <ButtonCustom
-              title="Đăng nhập với Facebook"
-              urlImage={IconFacebook}
-            />
-          </div>
-          <div>
-            <ButtonCustom title="Đăng nhập với Google" urlImage={IconGoogle} />
-          </div>
-          <div>Hoặc nhập thông tin tài khoản:</div>
-          <Formik
-            initialValues={{}}
-            onSubmit={(values: any) => {
-              console.log(values);
-              console.log(loading);
-              setOpenLogin(false);
-              setLoading(true);
-              setTimeout(() => {
-                setLoading(false);
-              }, 5000);
-            }}
-            // innerRef={formikRef}
-            // validationSchema={validateSubmit}
-          >
-            {(propsFormik: FormikProps<any>) => {
-              const { values, setValues, setFieldValue } = propsFormik;
-              return (
-                <Form>
-                  <Field
-                    component={InputCustom}
-                    name="tenDangNhap"
-                    placeholder={"Tên đăng nhập"}
-                  />
-
-                  <Field
-                    component={InputCustom}
-                    name="matKhau"
-                    placeholder={"Mật khẩu"}
-                    type={"password"}
-                  />
-                  <div>
-                    <ButtonCustom
-                      title="Tiếp tục"
-                      style={{ maxWidth: "100px" }}
-                      htmlType="submit"
-                    />
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        </Modal>
-      )}
     </Header>
   );
 };

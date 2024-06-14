@@ -13,6 +13,8 @@ export const StoreContext = createContext<{
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
+  const [numberLoading, setNumberLoading] = useState<number>(0);
+
   const [loading, setLoading] = useState<boolean>(false);
 
   return (

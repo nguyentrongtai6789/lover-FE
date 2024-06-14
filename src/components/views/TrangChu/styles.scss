@@ -1,0 +1,72 @@
+.trang-chu {
+  padding: 20px;
+  width: 100%;
+  max-height: calc(100vh - 69px);
+  overflow-y: auto;
+  > * {
+    margin-bottom: 10px;
+  }
+  .tom-tat-bai-viet {
+    display: flex;
+    border: 2px solid #e3e3e3;
+    border-radius: 2px;
+    width: 100%;
+    padding: 10px;
+    &:hover {
+      cursor: pointer;
+      background-color: white;
+      transition: all 0.3s ease-in-out;
+      img {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+    > * {
+      margin-right: 10px;
+    }
+    img {
+      width: auto;
+      max-width: 200px;
+      height: auto;
+      max-height: 200px;
+      border-radius: 2px;
+    }
+    .tieu-de {
+      font-weight: bold;
+      font-size: 18px;
+      font-family: Arial;
+      font-style: italic;
+    }
+    .noi-dung-chinh {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: justify;
+    }
+    .tac-gia-ngay-dang {
+      display: flex;
+      align-items: center;
+      margin-top: 5px;
+      > * {
+        margin-right: 10px;
+      }
+      span {
+        font-size: 12px;
+        font-style: italic;
+        font-family: Arial;
+        font-weight: bold;
+        color: #999;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      img {
+        border-radius: 50%;
+        max-width: 50px;
+        max-height: 50px;
+      }
+    }
+  }
+}
