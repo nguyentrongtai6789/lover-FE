@@ -1,15 +1,40 @@
 import { Layout } from "antd";
-import SideBarCustom from "../SideBarTrangChu";
-import "./styles.scss";
-import { listBaiViet } from "../../../fakeData";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IBaiViet } from "../../../global/interface";
-import { useNavigate } from "react-router-dom";
+import "./styles.scss";
+import { useEffect, useState } from "react";
+import {
+  listBaiVietKienThucMeBau,
+  listBaiVietNuoiDayCon,
+} from "../../../fakeData";
+import { CommentOutlined, LikeOutlined } from "@ant-design/icons";
 const TrangChu = () => {
   const navigate = useNavigate();
 
+  const [listBaiViet, setListBaiViet] = useState<IBaiViet[]>([]);
+
+  const location = useLocation();
+
+  const currentUrl = location.pathname.split("/");
+
+  useEffect(() => {
+    if (!location || !currentUrl) return;
+    if (
+      currentUrl.includes("trang-chu") &&
+      currentUrl.includes("nuoi-day-con")
+    ) {
+      setListBaiViet(listBaiVietNuoiDayCon);
+    }
+    if (
+      currentUrl.includes("trang-chu") &&
+      currentUrl.includes("kien-thuc-me-bau")
+    ) {
+      setListBaiViet(listBaiVietKienThucMeBau);
+    }
+  }, [location]);
+
   return (
-    <Layout style={{ padding: "" }}>
-      <SideBarCustom />
+    <Layout>
       <div className="trang-chu">
         {listBaiViet.map((item: IBaiViet) => (
           <>
@@ -27,6 +52,13 @@ const TrangChu = () => {
                   <img src={item.tacGia.avatar} alt="" />
                   <span>Tác giả: {item.tacGia.name}</span>
                   <span>Ngày đăng: {item.createdAt}</span>
+                  <span>|</span>
+                  <span style={{ color: "blue" }}>
+                    52 <LikeOutlined style={{ color: "blue" }} />
+                  </span>
+                  <span style={{ color: "blue" }}>
+                    16 <CommentOutlined style={{ color: "blue" }} />
+                  </span>
                 </div>
               </div>
             </div>

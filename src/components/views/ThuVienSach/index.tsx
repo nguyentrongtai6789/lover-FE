@@ -2,7 +2,6 @@ import { Layout, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { listBookAmThucNauAn } from "../../../fakeData";
 import { IBookThuVien } from "../../../global/interface";
-import SideBarCustom from "../SideBarThuVienSach";
 
 const ThuVienSach = () => {
   const {
@@ -12,7 +11,6 @@ const ThuVienSach = () => {
   const lissBook = listBookAmThucNauAn;
   return (
     <Layout style={{ padding: "" }}>
-      <SideBarCustom />
       <Content
         style={{
           padding: 5,

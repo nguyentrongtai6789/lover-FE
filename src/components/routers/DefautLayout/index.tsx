@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import LoadingCustom from "../../customComponents/LoadingCustom";
 import { StoreProvider } from "../../reduxAndStore/StoreContextCustom";
 import HeaderCustom from "../../views/HeaderCustom";
-import SideBarCustom from "../../views/SideBarThuVienSach";
+import SideBarCustom from "../../views/SideBar";
 
 const DefaultLayout: React.FC = () => {
   return (
@@ -22,7 +22,10 @@ const DefaultLayout: React.FC = () => {
             <HeaderCustom />
           </div>
           <Layout>
-            <Outlet />
+            <Layout style={{ padding: "" }}>
+              <SideBarCustom />
+              <Outlet />
+            </Layout>
           </Layout>
         </Layout>
         <LoadingCustom />

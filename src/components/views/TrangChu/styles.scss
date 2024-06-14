@@ -1,6 +1,11 @@
 .trang-chu {
   padding: 20px;
   width: 100%;
+  max-height: calc(100vh - 69px);
+  overflow-y: auto;
+  > * {
+    margin-bottom: 10px;
+  }
   .tom-tat-bai-viet {
     display: flex;
     border: 2px solid #e3e3e3;

@@ -18,6 +18,31 @@ const TrangChuRoutes: RouteObject = {
       element: <TrangChu />,
     },
     {
+      path: "kien-thuc-me-bau",
+      index: true,
+      element: <TrangChu />,
+    },
+    {
+      path: "cham-soc-be",
+      index: true,
+      element: <TrangChu />,
+    },
+    {
+      path: "sau-khi-sinh",
+      index: true,
+      element: <TrangChu />,
+    },
+    {
+      path: "gia-dinh",
+      index: true,
+      element: <TrangChu />,
+    },
+    {
+      path: "linh-tinh",
+      index: true,
+      element: <TrangChu />,
+    },
+    {
       path: "nuoi-day-con/:id",
       index: true,
       element: <ChiTietBaiViet />,
