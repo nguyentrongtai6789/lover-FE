@@ -49,8 +49,8 @@ const TrangChu = () => {
                 <div className="tieu-de">{item.tieuDe}</div>
                 <div className="noi-dung-chinh">{item.noiDung}</div>
                 <div className="tac-gia-ngay-dang">
-                  <img src={item.tacGia.avatar} alt="" />
-                  <span>Tác giả: {item.tacGia.name}</span>
+                  <span>Tác giả: </span> <img src={item.tacGia.avatar} alt="" />
+                  <span>{item.tacGia.name}</span>
                   <span>Ngày đăng: {item.createdAt}</span>
                   <span>|</span>
                   <span style={{ color: "blue" }}>

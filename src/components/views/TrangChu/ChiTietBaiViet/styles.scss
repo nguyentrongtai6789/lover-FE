@@ -1,0 +1,60 @@
+.container-chi-tiet-bai-viet {
+  display: flex;
+  width: 100%;
+  // max-height: calc(100vh - 67px);
+  // overflow-y: auto;
+  .chi-tiet-bai-viet {
+    font-family: Arial;
+    padding: 20px 100px;
+    color: #333;
+    width: 80%;
+    max-height: calc(100vh - 66px);
+    overflow-y: auto;
+    // border: 1px solid black;
+    .tieu-de-bai-viet {
+      font-size: 30px;
+      font-weight: bold;
+      font-style: italic;
+    }
+    .tac-gia-thoi-gian {
+      font-size: 15px;
+      color: #aaa;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      > * {
+        margin-right: 20px;
+      }
+      font-style: italic;
+      :hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      img {
+        border-radius: 50%;
+        max-width: 30px;
+        max-height: 30px;
+      }
+    }
+    .anh-thu-nhat {
+      display: flex;
+      justify-content: center;
+      border: 1px solid black;
+      margin-top: 10px;
+      img {
+        max-width: 60vw;
+        max-height: 50vh;
+      }
+    }
+    .noi-dung {
+      font-size: 16px;
+      margin-top: 10px;
+      text-align: justify;
+      line-height: 1.8;
+      word-spacing: 5px;
+    }
+  }
+  .danh-muc {
+    width: 20%;
+  }
+}
