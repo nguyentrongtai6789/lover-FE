@@ -1,6 +1,11 @@
 import { Layout } from "antd";
 import "./styles.scss";
+import { MouseEventHandler, useState } from "react";
+import ModalSoNguoiThich from "../../_ModalDungChung/ModalSoNguoiThich";
 const ChiTietBaiViet = () => {
+  const [openModalNguoiThich, setOpenModalNguoiThich] =
+    useState<boolean>(false);
+
   return (
     <Layout style={{ padding: "" }}>
       <div className="container-chi-tiet-bai-viet">
@@ -96,7 +101,22 @@ const ChiTietBaiViet = () => {
           </div>
           <hr />
           <div className="luot-thich">
-            <span>Bạn, Tài Nguyễn và 56 người khác thích bài viết này</span>
+            <span
+              onClick={(e) => {
+                {
+                  e.preventDefault();
+                  setOpenModalNguoiThich(true);
+                }
+              }}
+            >
+              Bạn, Tài Nguyễn và 56 người khác thích bài viết này
+            </span>
+            <ModalSoNguoiThich
+              isOpen={openModalNguoiThich}
+              onClose={() => {
+                setOpenModalNguoiThich(false);
+              }}
+            />
           </div>
           <div className="binh-luan"></div>
         </div>

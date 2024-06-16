@@ -53,6 +53,13 @@
       line-height: 1.8;
       word-spacing: 5px;
     }
+    .luot-thich {
+      color: #aaa;
+      :hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
   .danh-muc {
     width: 20%;

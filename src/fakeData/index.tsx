@@ -1,4 +1,10 @@
-import { IBaiViet, IBookThuVien, ICategory, IMenu } from "../global/interface";
+import {
+  IBaiViet,
+  IBookThuVien,
+  ICategory,
+  IMenu,
+  INguoiThich,
+} from "../global/interface";
 
 export const listCategoriesThuVienSach: ICategory[] = [
   { id: 1, name: "Ẩm thực - Nấu ăn", pathName: "am-thuc-nau-an" },
@@ -239,4 +245,87 @@ export const listMenu: IMenu[] = [
     listCategories: listCategoriesThuVienSach,
   },
   { id: 3, name: "Về chúng tôi", pathName: "ve-chung-toi", listCategories: [] },
+];
+
+export const listNguoiThichLike: INguoiThich[] = [
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
+  {
+    user: {
+      id: 1,
+      name: "Nguyễn Thị A",
+      avatar:
+        "https://scontent.fhan5-10.fna.fbcdn.net/v/t39.30808-6/432753406_3481316128826498_6793039337249032035_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=p8KmITuWYYsQ7kNvgGk0HFR&_nc_ht=scontent.fhan5-10.fna&oh=00_AYCuB75v95H3f8RGFRBGGGaZHdztwrIsQe5O8oTl74n5pA&oe=66747E77",
+    },
+    thoiGianThich: "05:07:00 16/06/2024",
+    loaiThich: "1",
+  },
 ];

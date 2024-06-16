@@ -1,3 +1,5 @@
+import { loaiThich } from "./type";
+
 export interface ICategory {
   id: number;
   name: string;
@@ -31,4 +33,10 @@ export interface IMenu {
   name: string;
   pathName: string;
   listCategories: ICategory[];
+}
+
+export interface INguoiThich {
+  user: IUser;
+  thoiGianThich: string;
+  loaiThich: string;
 }

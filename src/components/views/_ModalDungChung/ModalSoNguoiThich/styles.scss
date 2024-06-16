@@ -1,0 +1,55 @@
+.noi-dung-modal {
+  .header-modal {
+    align-items: center;
+    display: flex;
+    img {
+      max-width: 20px;
+    }
+    span {
+      width: 25%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      height: 30px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(218, 212, 203);
+      }
+    }
+  }
+  .body-modal {
+    font-family: Arial;
+    font-style: italic;
+    color: #999;
+    max-height: 200px;
+    overflow-y: auto;
+    .content-in-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      justify-content: space-between;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          margin-left: 10px;
+        }
+      }
+      img {
+        max-width: 30px;
+        max-height: 30px;
+      }
+      span {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .footer-modal {
+    display: flex;
+    justify-content: center;
+  }
+}
